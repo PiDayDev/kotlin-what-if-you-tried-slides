@@ -1,0 +1,76 @@
+/*
+
+Darcula color scheme from the JetBrains family of IDEs
+
+*/
+
+[data-highlight-theme="darcula"] .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 5px;
+  background: #2b2b2b;
+}
+
+[data-highlight-theme="darcula"] .hljs {
+  color: #bababa;
+}
+
+[data-highlight-theme="darcula"] .hljs-strong,
+[data-highlight-theme="darcula"] .hljs-emphasis {
+  color: #a8a8a2;
+}
+
+[data-highlight-theme="darcula"] .hljs-bullet,
+[data-highlight-theme="darcula"] .hljs-quote,
+[data-highlight-theme="darcula"] .hljs-link,
+[data-highlight-theme="darcula"] .hljs-number,
+[data-highlight-theme="darcula"] .hljs-regexp,
+[data-highlight-theme="darcula"] .hljs-literal {
+  color: #6896ba;
+}
+
+[data-highlight-theme="darcula"] .hljs-code,
+[data-highlight-theme="darcula"] .hljs-selector-class {
+  color: #a6e22e;
+}
+
+[data-highlight-theme="darcula"] .hljs-emphasis {
+  font-style: italic;
+}
+
+[data-highlight-theme="darcula"] .hljs-keyword,
+[data-highlight-theme="darcula"] .hljs-selector-tag,
+[data-highlight-theme="darcula"] .hljs-section,
+[data-highlight-theme="darcula"] .hljs-attribute,
+[data-highlight-theme="darcula"] .hljs-name,
+[data-highlight-theme="darcula"] .hljs-variable {
+  color: #cb7832;
+}
+
+[data-highlight-theme="darcula"] .hljs-params {
+  color: #b9b9b9;
+}
+
+[data-highlight-theme="darcula"] .hljs-string {
+  color: #6a8759;
+}
+
+[data-highlight-theme="darcula"] .hljs-subst,
+[data-highlight-theme="darcula"] .hljs-type,
+[data-highlight-theme="darcula"] .hljs-built_in,
+[data-highlight-theme="darcula"] .hljs-builtin-name,
+[data-highlight-theme="darcula"] .hljs-symbol,
+[data-highlight-theme="darcula"] .hljs-selector-id,
+[data-highlight-theme="darcula"] .hljs-selector-attr,
+[data-highlight-theme="darcula"] .hljs-selector-pseudo,
+[data-highlight-theme="darcula"] .hljs-template-tag,
+[data-highlight-theme="darcula"] .hljs-template-variable,
+[data-highlight-theme="darcula"] .hljs-addition {
+  color: #e0c46c;
+}
+
+[data-highlight-theme="darcula"] .hljs-comment,
+[data-highlight-theme="darcula"] .hljs-deletion,
+[data-highlight-theme="darcula"] .hljs-meta {
+  color: #7f7f7f;
+}
