@@ -1618,7 +1618,7 @@ val prices = mapOf(
 							</div>
 						</div>
 					</section>
-					<section>
+					<section class="no-code-overflow">
 						<div class="sl-block" data-block-type="text" style="width: 960px; left: 160px; top: 41px; height: auto;">
 							<div class="sl-block-content" style="z-index: 11;" dir="ui">
 								<h2>Le offerte (CTRL+C, CTRL+V)</h2>
@@ -5196,16 +5196,16 @@ object NoOffer : SpecialPrice() {
 				transition: "default",
 				backgroundTransition: "convex",
 				center: false,
+				slideNumber: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugin/menu/menu.js' }
+          { src: 'plugin/menu/menu.js' },
+          { src: 'plugin/defrag/defrag.js' }
 				]
 			});
-
-
 		</script>
 	</body>
 </html>
