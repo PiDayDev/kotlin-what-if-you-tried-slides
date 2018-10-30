@@ -34,3 +34,5 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 .no-code-overflow-x code {
     overflow-x:hidden;
 }
+
+.reveal .sl-block[data-block-type="code"] .sl-block-content pre {margin:1px;}

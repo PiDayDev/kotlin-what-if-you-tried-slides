@@ -12,7 +12,7 @@ Darcula color scheme from the JetBrains family of IDEs
 }
 
 [data-highlight-theme="darcula"] .hljs {
-  color: #bababa;
+  /*color: #bababa;*/
 }
 
 [data-highlight-theme="darcula"] .hljs-strong,
