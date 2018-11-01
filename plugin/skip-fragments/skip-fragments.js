@@ -17,8 +17,8 @@ const SkipFragments = (function (Reveal) {
             return;
         }
         const shortcut = {
-            view: 'V',
-            hide: 'C'
+            view: config.skipFragmentsShowShortcut || 'V',
+            hide: config.skipFragmentsHideShortcut || 'C'
         };
         const keyboard = config.keyboard === true ? {} : config.keyboard;
         keyboard[shortcut.view.toUpperCase().charCodeAt(0)] = showAll;
@@ -31,9 +31,6 @@ const SkipFragments = (function (Reveal) {
         });
     }
 
-    function configure(o) {
-    }
-
     function install() {
         installKeyBindings();
     }
@@ -41,7 +38,8 @@ const SkipFragments = (function (Reveal) {
     install();
 
     return {
-        configure: configure
+        showAll: showAll,
+        hideAll: hideAll
     };
 
 })(Reveal);
