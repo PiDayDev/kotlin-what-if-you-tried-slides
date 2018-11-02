@@ -35,11 +35,20 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
     overflow-x:hidden;
 }
 
-.reveal .sl-block[data-block-type="code"] .sl-block-content pre {margin:1px;}
+.reveal .sl-block[data-block-type="code"] .sl-block-content pre {
+    margin: 1px;
+}
 
-ul.list-with-margins li{ margin:0 20px 20px 0; vertical-align:top}
+.reveal ul.list-with-margins li {
+    margin: 0 20px 20px 0;
+    vertical-align: top;
+}
 
-a.attrib {
+.reveal ul.list-with-margins {
+    margin-left: 0;
+}
+
+.reveal a.attrib {
     z-index: 88;
     top: 0;
     right: 0;
