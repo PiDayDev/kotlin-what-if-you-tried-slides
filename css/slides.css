@@ -36,3 +36,26 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 }
 
 .reveal .sl-block[data-block-type="code"] .sl-block-content pre {margin:1px;}
+
+ul.list-with-margins li{ margin:0 20px 20px 0; vertical-align:top}
+
+a.attrib {
+    z-index: 88;
+    top: 0;
+    right: 0;
+    position: absolute;
+    opacity: 0.2;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 4px 6px;
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height:1.2;
+    display:inline-block;
+    border-radius:3px;
+}
+a.attrib span {
+    color: white;
+}
