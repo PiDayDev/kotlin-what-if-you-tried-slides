@@ -40,7 +40,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 }
 
 .reveal ul.list-with-margins li {
-    margin: 0 0 20px -18px;
+    margin: 0 0 4px -18px;
     vertical-align: top;
 }
 
