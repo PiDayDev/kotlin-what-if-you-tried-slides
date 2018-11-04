@@ -974,7 +974,7 @@ public interface Map&lt;K, out V&gt; { /* ... */ }
 						</div>
 					</section>
 
-          <section id="100-interoperability" data-notes="step-030
+          <section id="100-interoperability" data-menu-title="100% interoperability" data-notes="step-030
 - no checked exceptions in Kotlin!">
 						<div class="sl-block" data-block-type="text" style="width: 1280px; left: 0; top: 42px; height: auto;">
 							<div class="sl-block-content" style="z-index: 10;" dir="ui">
@@ -1033,88 +1033,6 @@ public interface Map&lt;K, out V&gt; { /* ... */ }
 				</section>
 
         <section class="stack">
-
-          <section id="let-s-get-rid-of-test-exceptions" data-notes="step-040">
-						<div class="sl-block" data-block-type="text" style="width: 960px; left: 160px; top: 42px; height: auto;">
-							<div class="sl-block-content" style="z-index: 14;" dir="ui">
-								<h2>Let's get rid of test exceptions</h2>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 358px; left: 12px; top: 600px;">
-							<div class="sl-block-content fragment" style="z-index: 12; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="1">
-								<p>expression body</p>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 509px; left: 400px; top: 600px;">
-							<div class="sl-block-content fragment" style="z-index: 17; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="2">
-								<p>type inference
-									<span style="color:orange">🡆 </span>can omit
-									<span style="text-align:start"> "</span>
-									<span style="text-align:start">: Int"</span>
-								</p>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 940px; height: 280px; left: 0; top: 140px;">
-							<div class="sl-block-style" style="z-index: 18;">
-								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 18; font-size: 200%;">
-                                <pre class="kotlin"><code>    override fun pay(
-        items: List&lt;String&gt;,
-        offers: Map&lt;String, Map.Entry&lt;Int, Int&gt;&gt;
-    ): Int {
-        TODO("not implemented")
-    }
-</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 940px; height: 300px; left: 0; top: 420px;">
-							<div class="sl-block-style" style="z-index: 10;">
-								<div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 10; font-size: 200%;" data-fragment-index="0">
-                                <pre class="kotlin"><code>    override fun pay(
-        items: List&lt;String&gt;,
-        offers: Map&lt;String, Map.Entry&lt;Int, Int&gt;&gt;
-    ) = 0</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 314px; left: 954px; top: 350px;">
-							<div class="sl-block-content fragment" style="z-index: 12; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="3">
-								<p>still fails 🤔</p>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 314px; left: 954px; top: 618px;">
-							<div class="sl-block-content fragment" style="z-index: 12; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="4">
-								<p>but better 😏</p>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 314px; height: 168px; left: 954px; top: 440px; ">
-							<div class="sl-block-style" style="z-index: 54; opacity: 1; ">
-								<div class="sl-block-content fragment" style="z-index: 54;" data-fragment-index="3" data-maintain-ar="false">
-									<img data-natural-width="314" data-natural-height="168" data-lazy-loaded="" style="border:2px solid #888;" data-src="img/step-040-tests.png"/>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 940px; height: 119px; left: 0; top: 140px;">
-							<div class="sl-block-style" style="z-index: 21; mix-blend-mode:exclusion; opacity: 0.53;">
-								<div class="sl-block-content fragment" style="background:rgb(68, 68, 68); z-index: 21;" data-fragment-index="0">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 940px; height: 39px; left: 0; top: 381px;">
-							<div class="sl-block-style" style="z-index: 22; mix-blend-mode:exclusion; opacity: 0.53;">
-								<div class="sl-block-content fragment" style="background:rgb(68, 68, 68); z-index: 22;" data-fragment-index="0">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 940px; height: 120px; left: 0; top: 261px;">
-							<div class="sl-block-style" style="z-index: 23; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(152, 0, 0); z-index: 23;" data-fragment-index="0">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 940px; height: 48px; left: 0; top: 540px;">
-							<div class="sl-block-style" style="z-index: 11; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 11;" data-fragment-index="0">&nbsp;</div>
-							</div>
-						</div>
-					</section>
 
           <section id="copy-and-paste"
 									 class="no-code-overflow"
@@ -2718,13 +2636,28 @@ Operator overload: don't abuse, but makes sense here
                 <h2>Let's move business logic into the model</h2>
               </div>
             </div>
-            <div class="sl-block" data-block-type="text" style="height: auto; width: 296px; left: 49px; top: 190px;" >
-              <div class="sl-block-content fragment" style="z-index: 15; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="0">
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 340px; left: 49px; top: 190px;">
+							<div class="sl-block-content fragment" style="z-index: 18; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="0">
+								<p>expression body</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 528px; height: 29px; left: 437px; top: 144px;" >
+							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="0">&nbsp;</div>
+							</div>
+						</div>
+            <div class="sl-block" data-block-type="text" style=" height: auto; width: 340px; left: 406px; top: 190px;" >
+              <div class="sl-block-content fragment" style="z-index: 15; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="1">
                 <p>operator overload</p>
               </div>
             </div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 547px; left: 585px; top: 190px;" >
-							<div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; background: rgba(68, 68, 68, 0.5); padding: 21px; text-align: center;" dir="ui" data-fragment-index="1">
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 393px; height: 29px; left: 43px; top: 144px;" >
+							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="1">&nbsp;</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" style=" height: auto; width: 506px; left: 763px; top: 190px;" >
+							<div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; background: rgba(68, 68, 68, 0.5); padding: 21px; text-align: center;" dir="ui" data-fragment-index="2">
 								<span style="font-family: monospace">Offer <span style="color:chartreuse">*</span> 3 <span style="color:orange">⇄</span> Offer<span style="color:chartreuse">.times(</span>3<span style="color:chartreuse">)</span></span>
 							</div>
 						</div>
@@ -2739,7 +2672,7 @@ Operator overload: don't abuse, but makes sense here
 						</div>
             <div class="sl-block" data-block-type="code" style="width: 1280px; height: 225px; left: 0; top: 279px;" >
               <div class="sl-block-style" style="z-index: 12;">
-                <div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 12; font-size: 125%;" data-fragment-index="2">
+                <div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 12; font-size: 125%;" data-fragment-index="3">
             <pre class="kotlin"><code>offers.forEach { (item, offer) -&gt;
     val (offerQuantity, offerPrice) = offer
     val quantity = quantities[item]
@@ -2754,7 +2687,7 @@ Operator overload: don't abuse, but makes sense here
             </div>
             <div class="sl-block" data-block-type="code" style="width: 1280px; height: 225px; left: 0; top: 504px;" >
               <div class="sl-block-style" style="z-index: 10;">
-                <div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 10; font-size: 125%;" data-fragment-index="2">
+                <div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 10; font-size: 125%;" data-fragment-index="3">
             <pre class="kotlin"><code>offers.forEach { (item, offer) -&gt;
     val quantity = quantities[item]
     if (quantity != null &amp;&amp; item in prices.keys) {
@@ -2770,24 +2703,17 @@ Operator overload: don't abuse, but makes sense here
             </div>
             <div class="sl-block" data-block-type="shape" style="width: 1280px; height: 225px; left: 0; top: 279px;" >
               <div class="sl-block-style" style="z-index: 13; opacity: 0.75;">
-                <div class="sl-block-content fragment" style="background:rgb(68, 68, 68); z-index: 13;" data-fragment-index="2">&nbsp;</div>
+                <div class="sl-block-content fragment" style="background:rgb(68, 68, 68); z-index: 13;" data-fragment-index="3">&nbsp;</div>
               </div>
             </div>
             <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 73px; left: 0; top: 608px;" >
               <div class="sl-block-style" style="z-index: 19; opacity:0.51;mix-blend-mode:lighten;">
-                <div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 19;" data-fragment-index="3">&nbsp;
-                </div>
+                <div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 19;" data-fragment-index="4">&nbsp;</div>
               </div>
             </div>
             <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 51px; left: 0; top: 407px;" >
 							<div class="sl-block-style" style="z-index: 18; opacity:0.51;mix-blend-mode:lighten;">
-                <div class="sl-block-content fragment" style="background:rgb(152, 0, 0); z-index: 18;" data-fragment-index="3">&nbsp;</div>
-              </div>
-            </div>
-            <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 393px; height: 29px; left: 43px; top: 144px;" >
-              <div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
-                <div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="0">&nbsp;
-                </div>
+                <div class="sl-block-content fragment" style="background:rgb(152, 0, 0); z-index: 18;" data-fragment-index="4">&nbsp;</div>
               </div>
             </div>
           </section>
