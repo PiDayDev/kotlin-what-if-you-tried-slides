@@ -3911,7 +3911,7 @@ object NoOffer : SpecialPrice() {
 						</div>
 						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 160px; height: 90px; left: 1109px; top: 121px;">
 							<div class="sl-block-content fragment" style="z-index: 21;" data-fragment-index="1">
-								<img data-natural-width="160" data-natural-height="90" data-lazy-loaded="" data-src="img/LogoWebHeader.png"/>
+								<img data-natural-width="160" data-natural-height="90" data-lazy-loaded="" data-src="img/iad.png"/>
 							</div>
 						</div>
 					</section>
@@ -3974,17 +3974,19 @@ object NoOffer : SpecialPrice() {
 			Reveal.initialize({
 				width: 1280,
 				height: 720,
-				defaultTiming: 60,
-				allottedTime: 45 * 60 * 1000, // 45'
-				progressBarHeight: 2,
-				barColor: 'rgb(200,0,0)',
-				pausedBarColor: 'rgba(200,0,0,.6)',
 				transition: "convex",
 				backgroundTransition: "fade",
 				center: false,
-				slideNumber: 'c/t',
 				controls: false,
 				history:true,
+				// speaker cfg.
+				showSlideNumber: 'speaker',
+				slideNumber: 'c/t',
+				defaultTiming: 60,
+				allottedTime: 45 * 60 * 1000, // 45'
+				progressBarHeight: 3,
+				barColor: 'rgb(199,87,188)',
+				pausedBarColor: 'rgba(199,87,188,.6)',
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
