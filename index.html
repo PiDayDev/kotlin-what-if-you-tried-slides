@@ -3960,6 +3960,7 @@ object NoOffer : SpecialPrice() {
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.js"></script>
+		<script src="js/axios.min.js"></script>
 
 		<script>
 			// More info about config & dependencies:
@@ -3984,10 +3985,31 @@ object NoOffer : SpecialPrice() {
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugin/menu/menu.js' },
-          { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js' },
-          { src: 'plugin/skip-fragments/skip-fragments.js' }
+					{ src: 'plugin/menu/menu.js' },
+					{ src: 'plugin/elapsed-time-bar/elapsed-time-bar.js' },
+					{ src: 'plugin/skip-fragments/skip-fragments.js' }
 				]
+			});
+
+			// homemade time tracker - only from "current slide" in speaker notes
+			const now = () => +new Date();
+			let tracker = {_start: now()};
+			Reveal.addEventListener('slidechanged', function (event) {
+				if (Reveal.isSpeakerNotes() && Reveal.getConfig().postMessageEvents) {
+					const {previousSlide, currentSlide} = event;
+					tracker[currentSlide.id] = now();
+					if (previousSlide) {
+						const id = previousSlide.id;
+						const t = tracker[id] || tracker._start;
+						axios.get('img/tracker.gif', {
+							params: {
+								dt: Math.floor((now() - t) / 1000),
+								id
+							}
+						});
+						tracker[id] = now();
+					}
+				}
 			});
 		</script>
 	</body>

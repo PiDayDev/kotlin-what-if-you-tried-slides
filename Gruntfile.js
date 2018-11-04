@@ -98,7 +98,20 @@ module.exports = function(grunt) {
 					base: root,
 					livereload: true,
 					open: true,
-					useAvailablePort: true
+					useAvailablePort: true,
+					middleware: function (connect, options, middlewares) {
+						// inject a custom middleware into the array of default middlewares
+						middlewares.unshift(function (req, res, next) {
+							if (/tracker/.test(req.url)) {
+								const pairs = [...new URLSearchParams(req.url.replace(/.*\?/, ''))];
+								const {dt, id} = pairs.reduce((a, [k, v]) => Object.assign({}, a, {[k]: v}), {});
+								grunt.log.writeln(`${dt.padStart(4, ' ')}s | ${id}`);
+							}
+							return next();
+						});
+
+						return middlewares;
+					}
 				}
 			}
 		},
