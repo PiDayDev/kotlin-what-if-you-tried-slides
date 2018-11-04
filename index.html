@@ -818,7 +818,7 @@ fun studying(
 									</li>
 									<li class="fragment" data-fragment-index="5">make the code <em>clearer</em> and more <em>expressive</em></li>
 									<li class="fragment" data-fragment-index="6">discover some Kotlin <em>features</em></li>
-									<li class="fragment" data-fragment-index="7">raise your <em>curiosity</em> (at least, I hope so 😇🤞)</li>
+									<li class="fragment" data-fragment-index="7">spur your <em>curiosity</em> (at least, I hope so 😇🤞)</li>
 								</ul>
 							</div>
 						</div>
@@ -3969,6 +3969,10 @@ object NoOffer : SpecialPrice() {
 				width: 1280,
 				height: 720,
 				defaultTiming: 60,
+				allottedTime: 45 * 60 * 1000, // 45'
+				progressBarHeight: 2,
+				barColor: 'rgb(200,0,0)',
+				pausedBarColor: 'rgba(200,0,0,.6)',
 				transition: "convex",
 				backgroundTransition: "fade",
 				center: false,
@@ -3981,6 +3985,7 @@ object NoOffer : SpecialPrice() {
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: 'plugin/menu/menu.js' },
+          { src: 'plugin/elapsed-time-bar/elapsed-time-bar.js' },
           { src: 'plugin/skip-fragments/skip-fragments.js' }
 				]
 			});
