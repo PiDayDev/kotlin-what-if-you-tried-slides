@@ -3302,7 +3302,7 @@ private fun pay(quantities: MutableMap&lt;String, Int&gt;,
 						</div>
 						<div class="sl-block" data-block-type="code" style="width: 428px; height: 618px; left: 0; top: 100px;">
 							<div class="sl-block-style" style="z-index: 11;">
-								<div class="sl-block-content notranslate fragment fade-up" data-highlight-theme="solarized-light" style="z-index: 11; border: 1px solid rgb(68, 68, 68);" data-fragment-index="0">
+								<div class="sl-block-content notranslate fragment fade-right" data-highlight-theme="solarized-light" style="z-index: 11; border: 1px solid rgb(68, 68, 68);" data-fragment-index="0">
                                 <pre class="java"><code>  public int pay(List&lt;String&gt; items, Map&lt;String, Entry&lt;Integer, Integer&gt;&gt; offers) {
     int res = 0;
     int a = 0;
@@ -3332,6 +3332,79 @@ private fun pay(quantities: MutableMap&lt;String, Int&gt;,
           break;
       }
     }</code></pre>
+								</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="code" style="width: 428px; height: 618px; left: 426px; top: 100px;">
+							<div class="sl-block-style" style="z-index: 12;">
+								<div class="sl-block-content notranslate fragment fade-up" data-highlight-theme="solarized-light" style="z-index: 12; border: 1px solid rgb(68, 68, 68);" data-fragment-index="0">
+                                <pre class="java"><code>    //Here I have to cycle through every offer to see if it applies
+    for (Entry entry : offers.entrySet()) {
+      switch (entry.getKey().toString()) {
+        case "apple":
+          int a1 = (int) ((Entry) entry.getValue()).getKey();
+          if (a &gt;= a1) {
+            res += (int) ((Entry) entry.getValue()).getValue();
+          }
+          a -= a1;
+          break;
+        //jb 2008-09-12: don't sell lychee anymore, but maybe in the future...
+//                case "lychee":
+//                    int a2 = (int) ((Entry) entry.getValue()).getKey();
+//                    if (p &gt;= a2) { res += (int) ((Entry) entry.getValue()).getValue(); }
+//                    p -= a2;
+//                    break;
+        case "pear":
+          int a2 = (int) ((Entry) entry.getValue()).getKey();
+          if (p &gt;= a2) {
+            res += (int) ((Entry) entry.getValue()).getValue();
+          }
+          p -= a2;
+          break;
+        case "pineapple":
+          int a3 = (int) ((Entry) entry.getValue()).getKey();
+          if (ananas &gt;= a3) {
+            res += (int) ((Entry) entry.getValue()).getValue();
+          }
+          ananas -= a3;
+          break;</code></pre>
+								</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="code" style="width: 428px; height: 618px; left: 852px; top: 100px;">
+							<div class="sl-block-style" style="z-index: 13;">
+								<div class="sl-block-content notranslate fragment fade-left" data-highlight-theme="solarized-light" style="z-index: 13; border: 1px solid rgb(68, 68, 68);" data-fragment-index="0">
+                                <pre class="java"><code>        case "banana":
+          int a4 = (int) ((Entry) entry.getValue()).getKey();
+          if (b &gt;= a4) {
+            res += (int) ((Entry) entry.getValue()).getValue();
+          }
+          b -= a4;
+          break;
+      }
+    }
+
+    for (Entry entry : map.entrySet()) {
+      switch (entry.getKey().toString()) {
+        case "apple":
+          res += a * (int) entry.getValue();
+          break;
+        case "pear":
+          res += p * (int) entry.getValue();
+          break;
+        case "pineapple":
+          res += ananas * (int) entry.getValue();
+          break;
+        case "banana":
+          res += b * (int) entry.getValue();
+          break;
+      }
+    }
+
+    return res;
+  }
+}
+</code></pre>
 								</div>
 							</div>
 						</div>
@@ -3372,84 +3445,6 @@ object NoOffer : SpecialPrice() {
 								</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="code" style="width: 428px; height: 618px; left: 426px; top: 100px;">
-							<div class="sl-block-style" style="z-index: 12;">
-								<div class="sl-block-content notranslate fragment fade-up" data-highlight-theme="solarized-light" style="z-index: 12; border: 1px solid rgb(68, 68, 68);" data-fragment-index="1">
-                                <pre class="java"><code>    //Here I have to cycle through every offer to see if it applies
-    for (Entry entry : offers.entrySet()) {
-      switch (entry.getKey().toString()) {
-        case "apple":
-          int a1 = (int) ((Entry) entry.getValue()).getKey();
-          if (a &gt;= a1) {
-            res += (int) ((Entry) entry.getValue()).getValue();
-          }
-          a -= a1;
-          break;
-        //jb 2008-09-12: don't sell lychee anymore, but maybe in the future...
-//                case "lychee":
-//                    int a2 = (int) ((Entry) entry.getValue()).getKey();
-//                    if (p &gt;= a2) { res += (int) ((Entry) entry.getValue()).getValue(); }
-//                    p -= a2;
-//                    break;
-        case "pear":
-          int a2 = (int) ((Entry) entry.getValue()).getKey();
-          if (p &gt;= a2) {
-            res += (int) ((Entry) entry.getValue()).getValue();
-          }
-          p -= a2;
-          break;
-        case "pineapple":
-          int a3 = (int) ((Entry) entry.getValue()).getKey();
-          if (ananas &gt;= a3) {
-            res += (int) ((Entry) entry.getValue()).getValue();
-          }
-          ananas -= a3;
-          break;</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 428px; height: 618px; left: 852px; top: 100px;">
-							<div class="sl-block-style" style="z-index: 13;">
-								<div class="sl-block-content notranslate fragment fade-up" data-highlight-theme="solarized-light" style="z-index: 13; border: 1px solid rgb(68, 68, 68);" data-fragment-index="2">
-                                <pre class="java"><code>        case "banana":
-          int a4 = (int) ((Entry) entry.getValue()).getKey();
-          if (b &gt;= a4) {
-            res += (int) ((Entry) entry.getValue()).getValue();
-          }
-          b -= a4;
-          break;
-      }
-    }
-
-    for (Entry entry : map.entrySet()) {
-      switch (entry.getKey().toString()) {
-        case "apple":
-          res += a * (int) entry.getValue();
-          break;
-        case "pear":
-          res += p * (int) entry.getValue();
-          break;
-        case "pineapple":
-          res += ananas * (int) entry.getValue();
-          break;
-        case "banana":
-          res += b * (int) entry.getValue();
-          break;
-      }
-    }
-
-    return res;
-  }
-}
-</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 471px; height: 553px; left: 5px; top: 135px;">
-							<div class="sl-block-content fragment" style="z-index: 17;" data-fragment-index="4">
-								<img data-natural-width="195" data-natural-height="229" data-lazy-loaded="" data-src="img/giphy-ah.gif"/>
-							</div>
-						</div>
 						<div class="sl-block" data-block-type="code" style="width: 480px; height: 618px; left: 0; top: 100px;">
 							<div class="sl-block-style" style="z-index: 16; transform: rotate(360deg);">
 								<div class="sl-block-content notranslate fragment fade-right" data-highlight-theme="darcula" style="z-index: 16;" data-fragment-index="3">
@@ -3475,15 +3470,20 @@ object NoOffer : SpecialPrice() {
 								</div>
 							</div>
 						</div>
+						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 471px; height: 553px; left: 5px; top: 135px;">
+							<div class="sl-block-content fragment" style="z-index: 17;" data-fragment-index="4">
+								<img data-natural-width="195" data-natural-height="229" data-lazy-loaded="" data-src="img/giphy-ah.gif"/>
+							</div>
+						</div>
 					</section>
 				</section>
 
         <section class="stack">
 
-          <section id="a-few-data" >
+          <section id="kotlin-ecosystem" >
 						<div class="sl-block" data-block-type="text" style="width: 1254px; left: 26px; top: 0; height: auto;">
 							<div class="sl-block-content" style="text-align: left; z-index: 10;" dir="ui">
-								<h2>A few data</h2>
+								<h2>Kotlin ecosystem</h2>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 515px; left: 26px; top: 269px;">
