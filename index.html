@@ -2487,11 +2487,6 @@ fun forFruits(vararg fruits: String) = fruits.asList()</code></pre>
 								</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 372px; left: 880px; top: 497px;">
-							<div class="sl-block-content fragment" style="z-index: 13; background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" data-fragment-index="3">
-								<p>long method 😥</p>
-							</div>
-						</div>
 						<div class="sl-block" data-block-type="text" style="height: auto; width: 372px; left: 880px; top: 164px;">
 							<div class="sl-block-content fragment" style="z-index: 14; background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" data-fragment-index="0">
 								<p>mutable map 😕</p>
@@ -2505,6 +2500,11 @@ fun forFruits(vararg fruits: String) = fruits.asList()</code></pre>
 						<div class="sl-block" data-block-type="text" style="height: auto; width: 372px; left: 880px; top: 388px;">
 							<div class="sl-block-content fragment" style="z-index: 16; background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" data-fragment-index="2">
 								<pre style="text-align:center">if 🤨</pre>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 372px; left: 880px; top: 497px;">
+							<div class="sl-block-content fragment" style="z-index: 13; background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" data-fragment-index="3">
+								<p>long method 😥</p>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="text" style="height: auto; width: 372px; left: 880px; top: 609px;">
@@ -2562,6 +2562,28 @@ fun forFruits(vararg fruits: String) = fruits.asList()</code></pre>
 								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 28;" data-fragment-index="4">&nbsp;</div>
 							</div>
 						</div>
+						<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 1261px; left: 0; top: 0;">
+							<div class="sl-block-style" style="z-index: 51;">
+								<div class="sl-block-content fragment current-visible" style="z-index: 13; text-align: left; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);"
+										 data-fragment-index="3" dir="ui">
+									<blockquote>
+										<p><span class="fontstyle0">The first rule of functions is that they should be small. </span></p>
+										<p>
+											<span class="fontstyle0">&nbsp; &nbsp; &nbsp;The second rule of functions is that </span>
+											<strong><span class="fontstyle2">they should be smaller than that</span></strong><em><span class="fontstyle2">.</span></em>
+										</p>
+									</blockquote>
+									<p style="text-align:right"><em><span class="fontstyle2">Uncle Bob</span></em></p>
+								</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 1279px; height: 123px; ">
+							<div class="sl-block-style" style="z-index: 50;">
+								<div class="sl-block-content fragment current-visible" style="z-index: 10;" data-maintain-ar="false"  data-fragment-index="3" >
+									<img data-lazy-loaded="" data-src="img/parchment.png"/>
+								</div>
+							</div>
+						</div>
 						<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 38px; top: 144px;">
 							<div class="sl-block-style" style="z-index: 29; opacity: 0.52;">
 								<div class="sl-block-content fragment current-visible" data-line-x1="-519" data-line-y1="451" data-line-x2="-519" data-line-y2="-116" data-line-color="#00ff00" data-line-start-type="arrow" data-line-end-type="arrow" style="z-index: 29;" data-line-width="8px" data-fragment-index="3">
@@ -2577,89 +2599,15 @@ fun forFruits(vararg fruits: String) = fruits.asList()</code></pre>
 						</div>
 					</section>
 
-					<section id="small-functions" data-notes="step-210
-
-SMELL: long methods
-Single Responsibility Principle" data-menu-title="Small functions">
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 593px; left: 0; top: 125px;">
-							<div class="sl-block-style" style="z-index: 11;">
-								<div class="sl-block-content notranslate fragment fade-in-then-semi-out" data-highlight-theme="darcula" style="z-index: 11; font-size: 135%;" data-fragment-index="0">
-                                <pre class="kotlin"><code>override fun pay(items: List&lt;String&gt;, offers: Map&lt;String, Pair&lt;Int, Int&gt;&gt;): Int {
-    val quantities = items.groupingBy { it }.eachCount().toMutableMap()
-
-
-
-
-
-    var offerTotal = 0
-    offers.forEach { (item, offer) -&gt;
-        val (offerQuantity, offerPrice) = offer
-        val quantity = quantities[item]
-        if (quantity != null &amp;&amp; item in prices.keys) {
-            val repeat = quantity / offerQuantity
-            offerTotal += repeat * offerPrice
-            quantities[item] = quantity - repeat * offerQuantity
-        }
-    }
-    return offerTotal +
-           quantities.entries.sumBy {
-                (item, quantity) -&gt; quantity * (prices[item] ?: 0)
-           }
-}
-</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 123px; left: 0; top: 193px;">
-							<div class="sl-block-style" style="z-index: 12;">
-								<div class="sl-block-content notranslate fragment fade-right" data-highlight-theme="darcula" style="z-index: 12; font-size: 135%;" data-fragment-index="1">
-                                <pre class="kotlin"><code>    return pay(quantities, offers)
-}
-
-private fun pay(quantities: MutableMap&lt;String, Int&gt;, offers: Map&lt;String, Pair&lt;Int, Int&gt;&gt;): Int {</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 1261px; left: 0; top: 0;">
-							<div class="sl-block-style" style="z-index: 13;">
-								<div class="sl-block-content" style="z-index: 13; text-align: left; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);" dir="ui">
-									<blockquote>
-										<p>
-											<span class="fontstyle0">The first rule of functions is that they should be small. </span>
-										</p>
-										<p>
-											<span class="fontstyle0">&nbsp; &nbsp; &nbsp;The second rule of functions is that </span>
-											<strong><span class="fontstyle2">they should be smaller than that</span></strong><em><span class="fontstyle2">.</span></em>
-										</p>
-									</blockquote>
-									<p style="text-align:right">
-										<em>
-											<span class="fontstyle2">Uncle Bob</span>
-										</em>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 128px; left: 0; top: 188px;">
-							<div class="sl-block-style" style="z-index: 14; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 14;" data-fragment-index="1">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 1279px; height: 123px; ">
-							<div class="sl-block-style" style="z-index: 10;">
-								<div class="sl-block-content" style="z-index: 10;" data-maintain-ar="false">
-									<img data-lazy-loaded="" data-src="img/parchment.png"/>
-								</div>
-							</div>
-						</div>
-					</section>
-
 				</section>
 
         <section class="stack">
 
-          <section id="domain-model" data-notes="step-220
+          <section id="domain-model" data-notes="step-210
+SMELL: long methods
+Single Responsibility Principle
 
+step-220
 SMELL: primitive obsession
 - mapValues
 - data class has
@@ -2680,14 +2628,24 @@ SMELL: primitive obsession
 								</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 547px; left: 367px; top: 180px;">
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 547px; left: 67px; top: 180px;">
 							<div class="sl-block-content fragment" style="z-index: 15; background: rgba(68, 68, 68, 0.5); padding: 21px; text-align: center; color: rgb(255, 153, 0);" dir="ui" data-fragment-index="0">
 								<pre>data class</pre>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 339px; left: 575px; top: 180px;">
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 339px; left: 275px; top: 180px;">
 							<div class="sl-block-content fragment" style="z-index: 16; background: rgba(0, 0, 0, 0); padding: 20px; text-align: center;" dir="ui" data-fragment-index="0">
 								<p>for simple structures</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 355px; left: 775px; top: 180px;">
+							<div class="sl-block-content fragment" style="z-index: 16;  background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" dir="ui" data-fragment-index="2">
+								<p>split methods</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 355px; left: 775px; top: 538px;">
+							<div class="sl-block-content fragment" style="z-index: 16;  background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" dir="ui" data-fragment-index="3">
+								<p>new instance (no <span style="font-family: monospace; color: orange;">new</span>)</p>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 456px; left: 0; top: 264px;">
@@ -2696,12 +2654,12 @@ SMELL: primitive obsession
                                 <pre class="kotlin"><code>override fun pay(items: List&lt;String&gt;, offers: Map&lt;String, Pair&lt;Int, Int&gt;&gt;): Int {
     val quantities = items.groupingBy { it }.eachCount().toMutableMap()
 
-    return pay(quantities, offers)
-}
 
 
 
-private fun pay(quantities: MutableMap&lt;String, Int&gt;, offers: Map&lt;String, Pair&lt;Int, Int&gt;&gt;): Int {
+
+
+
 
     var offerTotal = 0
     offers.forEach { (item, offer) -&gt;
@@ -2726,24 +2684,34 @@ private fun pay(quantities: MutableMap&lt;String, Int&gt;, offers: Map&lt;String
 								</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 749px; left: 274px; top: 621px;">
-							<div class="sl-block-content fragment" style="z-index: 14; background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" dir="ui" data-fragment-index="3">
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 749px; left: 381px; top: 631px;">
+							<div class="sl-block-content fragment" style="z-index: 14; background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" dir="ui" data-fragment-index="4">
 								<p>built-in support for destructuring assignment, ...</p>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 86px; left: 0; top: 319px;">
-							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="2">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 325px; height: 33px; left: 648px; top: 478px;">
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 411px; height: 33px; left: 52px; top: 404px;">
 							<div class="sl-block-style" style="z-index: 18; opacity:0.51;mix-blend-mode:lighten;">
 								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 18;" data-fragment-index="2">&nbsp;</div>
 							</div>
 						</div>
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 56px; left: 0; top: 470px;">
+							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="2">&nbsp;</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 86px; left: 0; top: 321px;">
+							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="3">&nbsp;</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 325px; height: 33px; left: 648px; top: 478px;">
+							<div class="sl-block-style" style="z-index: 18; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 18;" data-fragment-index="3">&nbsp;</div>
+							</div>
+						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 500px; height: 33px; left: 93px; top: 583px;">
 							<div class="sl-block-style" style="z-index: 20; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 20;" data-fragment-index="3">&nbsp;</div>
+								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 20;" data-fragment-index="4">&nbsp;</div>
 							</div>
 						</div>
 					</section>
