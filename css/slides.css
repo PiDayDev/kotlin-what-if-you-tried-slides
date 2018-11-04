@@ -67,3 +67,8 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 a.attrib span {
     color: white;
 }
+
+.reveal span.clouditem {
+    padding: 5px;
+    vertical-align: middle;
+}
