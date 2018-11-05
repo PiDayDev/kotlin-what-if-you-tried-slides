@@ -3651,11 +3651,12 @@ object NoOffer : SpecialPrice() {
 				]
 			});
 
-			// homemade time tracker - only from "current slide" in speaker notes
-			const now = () => +new Date();
-			let tracker = {_start: now()};
-			Reveal.addEventListener('slidechanged', function (event) {
-				if (Reveal.isSpeakerNotes() && Reveal.getConfig().postMessageEvents) {
+			// adjustments for "current slide" in speaker notes
+      if (Reveal.isSpeakerNotes() && Reveal.getConfig().postMessageEvents) {
+				// homemade time tracker
+				const now = () => +new Date();
+				let tracker = {_start: now()};
+				Reveal.addEventListener('slidechanged', function (event) {
 					const {previousSlide, currentSlide} = event;
 					tracker[currentSlide.id] = now();
 					if (previousSlide) {
@@ -3669,8 +3670,18 @@ object NoOffer : SpecialPrice() {
 						});
 						tracker[id] = now();
 					}
-				}
-			});
+				});
+
+				// larger progress bars
+				const progressBarHeight = 8;
+				const tag = document.createElement( 'style' );
+				tag.type = 'text/css';
+				tag.appendChild( document.createTextNode( `
+				 .reveal div.progress { height: ${progressBarHeight}px !important; bottom: 0 !important; }
+				 .reveal div.progress ~ div.progress { bottom: ${progressBarHeight}px !important; }
+				` ) );
+				document.getElementsByTagName( 'head' )[0].appendChild( tag );
+      }
 		</script>
 	</body>
 </html>

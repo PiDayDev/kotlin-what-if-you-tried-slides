@@ -476,7 +476,6 @@
 
 					var params = [
 						'receiver',
-						'progress=false',
 						'history=false',
 						'transition=none',
 						'autoSlide=0',
@@ -486,7 +485,7 @@
 					var urlSeparator = /\?/.test(data.url) ? '&' : '?';
 					var hash = '#/' + data.state.indexh + '/' + data.state.indexv;
 					var currentURL = data.url + urlSeparator + params + '&postMessageEvents=true' + hash;
-					var upcomingURL = data.url + urlSeparator + params + '&controls=false' + hash;
+					var upcomingURL = data.url + urlSeparator + params + '&controls=false&progress=false' + hash;
 
 					currentSlide = document.createElement( 'iframe' );
 					currentSlide.setAttribute( 'width', 1280 );
