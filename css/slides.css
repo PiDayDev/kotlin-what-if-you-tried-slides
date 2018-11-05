@@ -71,4 +71,6 @@ a.attrib span {
 .reveal span.clouditem {
     padding: 5px;
     vertical-align: middle;
+    display: inline-block;
+    height: 80px;
 }
