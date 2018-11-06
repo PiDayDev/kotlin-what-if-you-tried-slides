@@ -2627,178 +2627,89 @@ private fun pay(quantities: MutableMap&lt;String, Int&gt;, offers: Map&lt;String
 									 class="no-code-overflow"
 									 data-menu-title="Logic into model"
 									 data-notes="step-230
-
 Anemic domain model: per ora solo dati, niente logica... iniziamo a spostare
 Behaviour attractor
 Operator overload: don't abuse, but makes sense here
+step-245
+- infix functions can be very expressive
+- part of a DSL
 ">
             <div class="sl-block" data-block-type="text" style="width: 1280px; left: 0; top: 35px; height: auto;" >
               <div class="sl-block-content" style="z-index: 11;" dir="ui">
                 <h2>Let's move business logic into the model</h2>
               </div>
             </div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 340px; left: 49px; top: 190px;">
+
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 340px; left: 49px; top: 410px;">
 							<div class="sl-block-content fragment" style="z-index: 18; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="0">
 								<p>expression body</p>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 602px; height: 29px; left: 509px; top: 153px;" >
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 682px; height: 36px; left: 566px; top: 190px;" >
 							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
 								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="0">&nbsp;</div>
 							</div>
 						</div>
-            <div class="sl-block" data-block-type="text" style=" height: auto; width: 340px; left: 406px; top: 190px;" >
+
+            <div class="sl-block" data-block-type="text" style=" height: 84px; width: 340px; left: 406px; top: 410px;" >
               <div class="sl-block-content fragment" style="z-index: 15; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="1">
                 <p>operator overload</p>
               </div>
             </div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 460px; height: 29px; left: 43px; top: 153px;" >
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 504px; height: 36px; left: 61px; top: 190px;" >
 							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
 								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="1">&nbsp;</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style=" height: auto; width: 506px; left: 763px; top: 190px;" >
+
+						<div class="sl-block" data-block-type="text" style=" height: 84px; width: 506px; left: 763px; top: 410px;" >
 							<div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 20; background: rgba(68, 68, 68, 0.5); padding: 21px; text-align: center;" dir="ui" data-fragment-index="2">
 								<span style="font-family: monospace">Offer <span style="color:chartreuse">*</span> 3 <span style="color:orange">⇄</span> Offer<span style="color:chartreuse">.times(</span>3<span style="color:chartreuse">)</span></span>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 163px; left: 0; top: 116px;" >
-							<div class="sl-block-style" style="z-index: 14;">
-								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 14; font-size: 155%;">
-            <pre class="kotlin"><code>data class Offer(val quantity: Int, val price: Int) {
+
+						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 604px; left: 0; top: 116px;" >
+							<div class="sl-block-style" style="z-index: 10;">
+								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 14; font-size: 175%;">
+           			 <pre class="kotlin"><code>data class Offer(val quantity: Int, val price: Int) {
+
     operator fun times(repeat: Int) = Offer(repeat * quantity, repeat * price)
+
 }</code></pre>
 								</div>
 							</div>
 						</div>
-            <div class="sl-block" data-block-type="code" style="width: 1280px; height: 225px; left: 0; top: 279px;" >
-              <div class="sl-block-style" style="z-index: 12;">
-                <div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 12; font-size: 125%;" data-fragment-index="3">
-            <pre class="kotlin"><code>offers.forEach { (item, offer) -&gt;
-    val (offerQuantity, offerPrice) = offer
-    val quantity = quantities[item]
-    if (quantity != null &amp;&amp; item in prices.keys) {
-        val repeat = quantity / offerQuantity
-        offerTotal += repeat * offerPrice
-        quantities[item] = quantity - repeat * offerQuantity
-    }
-}</code></pre>
-                </div>
-              </div>
-            </div>
-            <div class="sl-block" data-block-type="code" style="width: 1280px; height: 225px; left: 0; top: 504px;" >
-              <div class="sl-block-style" style="z-index: 10;">
-                <div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 10; font-size: 125%;" data-fragment-index="3">
-            <pre class="kotlin"><code>offers.forEach { (item, offer) -&gt;
-    val quantity = quantities[item]
-    if (quantity != null &amp;&amp; item in prices.keys) {
-        val repeat = quantity / offer.quantity
-        val appliedOffer = offer * repeat
-        offerTotal += appliedOffer.price
-        quantities[item] = quantity - appliedOffer.quantity
-    }
-}
-</code></pre>
-                </div>
-              </div>
-            </div>
-            <div class="sl-block" data-block-type="shape" style="width: 1280px; height: 225px; left: 0; top: 279px;" >
-              <div class="sl-block-style" style="z-index: 13; opacity: 0.75;">
-                <div class="sl-block-content fragment" style="background:rgb(68, 68, 68); z-index: 13;" data-fragment-index="3">&nbsp;</div>
-              </div>
-            </div>
-            <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 73px; left: 0; top: 608px;" >
-              <div class="sl-block-style" style="z-index: 19; opacity:0.51;mix-blend-mode:lighten;">
-                <div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 19;" data-fragment-index="4">&nbsp;</div>
-              </div>
-            </div>
-            <div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 51px; left: 0; top: 407px;" >
-							<div class="sl-block-style" style="z-index: 18; opacity:0.51;mix-blend-mode:lighten;">
-                <div class="sl-block-content fragment" style="background:rgb(152, 0, 0); z-index: 18;" data-fragment-index="4">&nbsp;</div>
-              </div>
-            </div>
-          </section>
+						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 604px; left: 0; top: 116px;">
+							<div class="sl-block-style" style="z-index: 11;">
+								<div class="sl-block-content notranslate fragment" data-fragment-index="3" data-highlight-theme="darcula" style="z-index: 10; font-size: 175%;">
+									<pre class="kotlin"><code>data class Offer(val quantity: Int, val price: Int) {
 
-          <section id="go-on" data-notes="step-245
-
-- infix functions can be very expressive
-- part of a DSL" class="no-code-overflow">
-						<div class="sl-block" data-block-type="text" style="width: 960px; left: 160px; top: 35px; height: auto;">
-							<div class="sl-block-content" style="z-index: 11;" dir="ui">
-								<h2>Go on</h2>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 212px; left: 0; top: 116px;">
-							<div class="sl-block-style" style="z-index: 10;">
-								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 10; font-size: 145%;">
-                                <pre class="kotlin"><code>data class Offer(val quantity: Int, val price: Int) {
     operator fun times(repeat: Int) = Offer(repeat * quantity, repeat * price)
+
     infix fun buying(quantity: Int) : Offer {
         val repeat = quantity / this.quantity
         return this * repeat
     }
+
 }</code></pre>
 								</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 456px; height: 29px; left: 43px; top: 178px;" >
+
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 506px; height: 36px; left: 61px; top: 258px;" >
 							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="0">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="10">&nbsp;</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 227px; left: 0; top: 291px;">
-							<div class="sl-block-style" style="z-index: 12;">
-								<div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 12; font-size: 125%;" data-fragment-index="3">
-                                <pre class="kotlin"><code>offers.forEach { (item, offer) -&gt;
-    val quantity = quantities[item]
-    if (quantity != null &amp;&amp; item in prices.keys) {
-        val repeat = quantity / offer.quantity
-        val appliedOffer = offer * repeat
-        offerTotal += appliedOffer.price
-        quantities[item] = quantity - appliedOffer.quantity
-    }
-}</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 202px; left: 0; top: 518px;">
-							<div class="sl-block-style" style="z-index: 10;">
-								<div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 10; font-size: 125%;" data-fragment-index="3">
-                                <pre class="kotlin"><code>offers.forEach { (item, offer) -&gt;
-    val quantity = quantities[item]
-    if (quantity != null &amp;&amp; item in prices.keys) {
-        val appliedOffer = offer buying quantity
-        offerTotal += appliedOffer.price
-        quantities[item] = quantity - appliedOffer.quantity
-    }
-}</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="width: 1280px; height: 227px; left: 0; top: 291px;">
-							<div class="sl-block-style" style="z-index: 13; opacity: 0.75;">
-								<div class="sl-block-content fragment" style="background:rgb(68, 68, 68); z-index: 13;" data-fragment-index="3">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="width: 1280px; height: 88px; left: 0; top: 594px;">
-							<div class="sl-block-style" style="z-index: 15; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 15;" data-fragment-index="3">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="width: 1280px; height: 101px; left: 0; top: 367px;">
-							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(152, 0, 0); z-index: 17;" data-fragment-index="3">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 249px; left: 622px; top: 191px;">
-							<div class="sl-block-content fragment" data-fragment-index="0" style="z-index: 19; background: rgba(68, 68, 68, 0.5); padding: 20px;">
+						<div class="sl-block" data-block-type="text" style="height: 84px; width: 280px; left: 49px; top: 514px;">
+							<div class="sl-block-content fragment" data-fragment-index="10" style="z-index: 19; background: rgba(68, 68, 68, 0.5); padding: 20px;">
 								<p>
 									<span style="font-family:monospace;color:orange">infix</span> function
 								</p>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 384px; left: 886px; top: 192px;">
-							<div class="sl-block-content fragment" data-fragment-index="1" style="z-index: 19; background: rgba(68, 68, 68, 0.5); padding: 20px;">
+						<div class="sl-block" data-block-type="text" style="height: 84px; width: 400px; left: 346px; top: 514px;">
+							<div class="sl-block-content fragment" data-fragment-index="20" style="z-index: 19; background: rgba(68, 68, 68, 0.5); padding: 20px;">
 								<p style="font-family:monospace;">
 									i<span style="color:chartreuse"> call </span>u
 									<span style="color:orange">⇄</span>
@@ -2806,9 +2717,39 @@ Operator overload: don't abuse, but makes sense here
 								</p>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 512px; left: 756px; top: 599px;">
-							<div class="sl-block-content fragment" style="z-index: 20; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="4">
+						<div class="sl-block" data-block-type="text" style="height: 84px; width: 506px; left: 763px; top: 514px;">
+							<div class="sl-block-content fragment" style="z-index: 20; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="50">
 								<p>and that's how DSL are born 👶</p>
+							</div>
+						</div>
+
+						<div class="sl-block" data-block-type="shape" style="width: 640px; height: 95px; left: 0; top: 625px;">
+							<div class="sl-block-style" style="z-index: 25; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment" style="background:rgb(152, 0, 0); z-index: 25;" data-fragment-index="50">&nbsp;</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="code" style="width: 640px; height: 95px; left: 0; top: 625px;">
+							<div class="sl-block-style" style="z-index: 20;">
+								<div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 20; font-size: 100%;" data-fragment-index="50">
+									<pre class="kotlin"><code>  val (offerQuantity, offerPrice) = offer
+  val repeat = quantity / offerQuantity
+  offerTotal += repeat * offerPrice
+  quantities[item] = quantity - repeat * offerQuantity</code></pre>
+								</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 640px; height: 95px; left: 640px; top: 625px;" >
+							<div class="sl-block-style" style="z-index: 25; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 25;" data-fragment-index="50">&nbsp;</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="code" style="width: 640px; height: 95px; left: 640px; top: 625px;">
+							<div class="sl-block-style" style="z-index: 20;">
+								<div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 20; font-size: 130%;" data-fragment-index="50">
+									<pre class="kotlin"><code>  val appliedOffer = offer buying quantity
+  offerTotal += appliedOffer.price
+  quantities[item] = quantity - appliedOffer.quantity</code></pre>
+								</div>
 							</div>
 						</div>
 					</section>
