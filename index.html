@@ -1937,86 +1937,137 @@ return res</code></pre>
 						</div>
 					</section>
 
-          <section id="collection-methods" data-notes="step-120
-- Map vs MutableMap">
+          <section id="collection-methods" class="no-code-overflow no-code-overflow-x" data-notes="step-120
+- Map vs MutableMap
+step-140 / 150
+- inline: better performance
+- I swapped 2nd loop, Elvis still needed">
 						<div class="sl-block" data-block-type="text" style="width: 960px; left: 160px; top: 42px; height: auto;">
 							<div class="sl-block-content" style="z-index: 11;" dir="ui">
 								<h2>Collection methods</h2>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 524px; left: 746px; top: 432px;">
-							<div class="sl-block-content fragment" style="z-index: 12; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="0">
-								<p>no-boilerplate collection functions</p>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 280px; left: 0; top: 140px;">
-							<div class="sl-block-style" style="z-index: 13;">
-								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 13; font-size: 200%;">
-                                <pre class="kotlin"><code>val quantities = mutableMapOf&lt;String, Int&gt;()
 
+						<div class="sl-block" data-block-type="code" style="width: 635px; height: 410px; left: 0; top: 140px;">
+							<div class="sl-block-style" style="z-index: 10;">
+								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 10; font-size: 135%;">
+                                <pre class="kotlin"><code>val quantities = mutableMapOf&lt;String, Int&gt;()
 for (item in items) {
     quantities[item] = 1 + (quantities[item] ?: 0)
+}
+
+
+for ((item, offer) in offers) {
+    // ...
+}
+
+
+for ((item, price) in prices) {
+    val quantity = quantities[item] ?: 0
+    res += quantity * price
 }</code></pre>
 								</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 300px; left: 0; top: 420px;">
+						<div class="sl-block" data-block-type="code" style="width: 645px; height: 410px; left: 635px; top: 140px;">
 							<div class="sl-block-style" style="z-index: 10;">
-								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 10; font-size: 200%;">
+								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 10; font-size: 135%;">
                                 <pre class="kotlin"><code>val quantities = items
         .groupingBy( { item -&gt; item } )
         .eachCount()
-        .toMutableMap()</code></pre>
+        .toMutableMap()
+
+
+offers.forEach { (item, offer) -&gt;
+    // ...
+}
+
+
+res += quantities.entries.sumBy {
+    (item, quantity) -&gt; quantity * (prices[item]?:0)
+}</code></pre>
 								</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 524px; left: 746px; top: 520px;">
-							<div class="sl-block-content fragment" style="z-index: 14; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="1">
-								<p>lambda expressions</p>
+						<div class="sl-block" data-block-type="shape" style="width: 635px; height: 410px; left: 0; top: 140px;">
+							<div class="sl-block-style" style="z-index: 11; mix-blend-mode:exclusion; opacity: 0.53;">
+								<div class="sl-block-content" style="background:rgb(68, 68, 68); z-index: 11;">&nbsp;</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 524px; left: 746px; top: 609px;">
-							<div class="sl-block-content fragment" style="z-index: 15; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="2">
-								<p>mutable? on-demand</p>
+
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 524px; left: 8px; top: 558px;">
+							<div class="sl-block-content fragment" style="z-index: 12; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="0">
+								<p>no-boilerplate collection functions</p>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 276px; left: 0; top: 144px;">
-							<div class="sl-block-style" style="z-index: 16; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content" style="background:rgb(152, 0, 0); z-index: 16;">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 221px; height: 42px; left: 149px; top: 461px;">
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 171px; height: 81px; left: 735px; top: 173px;">
 							<div class="sl-block-style" style="z-index: 17; opacity:0.51;mix-blend-mode:lighten;">
 								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 17;" data-fragment-index="0">&nbsp;</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 221px; height: 42px; left: 149px; top: 504px;">
-							<div class="sl-block-style" style="z-index: 18; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 18;" data-fragment-index="0">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 277px; height: 42px; left: 149px; top: 547px;">
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 102px; height: 42px; left: 721px; top: 295px;">
 							<div class="sl-block-style" style="z-index: 19; opacity:0.51;mix-blend-mode:lighten;">
 								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 19;" data-fragment-index="0">&nbsp;</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 304px; height: 42px; left: 379px; top: 462px;">
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 81px; height: 33px; left: 952px; top: 433px;">
+							<div class="sl-block-style" style="z-index: 18; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 18;" data-fragment-index="0">&nbsp;</div>
+							</div>
+						</div>
+
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 332px; left: 546px; top: 558px;">
+							<div class="sl-block-content fragment" style="z-index: 14; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="1">
+								<p>lambda expressions</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 208px; height: 42px; left: 896px; top: 171px;">
 							<div class="sl-block-style" style="z-index: 21; opacity:0.51;mix-blend-mode:lighten;">
 								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 21;" data-fragment-index="1">&nbsp;</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 277px; height: 42px; left: 149px; top: 547px;">
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 236px; height: 42px; left: 823px; top: 296px;">
+							<div class="sl-block-style" style="z-index: 21; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 21;" data-fragment-index="1">&nbsp;</div>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 591px; height: 34px; left: 690px; top: 461px;">
+							<div class="sl-block-style" style="z-index: 21; opacity:0.51;mix-blend-mode:lighten;">
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 21;" data-fragment-index="1">&nbsp;</div>
+							</div>
+						</div>
+
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 380px; left: 892px; top: 558px;">
+							<div class="sl-block-content fragment" style="z-index: 15; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="2">
+								<p>mutable? on-demand</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 198px; height: 33px; left: 735px; top: 224px;">
 							<div class="sl-block-style" style="z-index: 22; opacity:0.51;mix-blend-mode:lighten;">
 								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 22;" data-fragment-index="2">&nbsp;</div>
 							</div>
 						</div>
+
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 482px; right: 10px; top: 644px;">
+							<div class="sl-block-content fragment" style="z-index: 16; background: rgba(68, 68, 68, 0.5); padding: 20px; font-size:0.96em;" data-fragment-index="3">
+								<p><span style="font-family:monospace;color:orange">inline fun</span>: embed lambda ⏩</p>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="code" style=" width: 768px; height: 78px; left: 10px; top: 644px;">
+							<div class="sl-block-style" style="z-index: 17;">
+								<div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 17; font-size: 150%; border: 1px solid;" data-fragment-index="3">
+									<pre class="kotlin"><code style="padding-top: 20px">inline fun &lt;T&gt; Iterable&lt;T&gt;.forEach(action: (T) -&gt; Unit)</code></pre>
+								</div>
+							</div>
+						</div>
+
 					</section>
 
           <section id="lambda" data-notes="step-130
 implicit it: as concise as they come">
-						<div class="sl-block" data-block-type="text" style="width: 649px; left: 68px; top: 44px; height: auto;">
+						<div class="sl-block" data-block-type="text" style="width: 1280px; left: 0px; top: 44px; height: auto;">
 							<div class="sl-block-content" style="z-index: 12;" dir="ui">
-								<h2>Lambda</h2>
+								<h2>Lambda expressions</h2>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="code" style="width: 789px; height: 580px; left: 0; top: 140px;">
@@ -2086,95 +2137,6 @@ implicit it: as concise as they come">
 						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 480px; height: 384px; left: 793px; top: 220px;">
 							<div class="sl-block-content fragment fade-left" style="z-index: 21;" data-fragment-index="3">
 								<img data-natural-width="480" data-natural-height="384" data-lazy-loaded="" data-src="img/giphy-snap.gif"/>
-							</div>
-						</div>
-					</section>
-
-          <section id="more-collection-methods" data-notes="[ SKIPPABLE ]
-step-140 / 150
-- inline: better performance
-- I swapped 2nd loop, Elvis still needed">
-						<div class="sl-block" data-block-type="text" style="width: 960px; left: 160px; top: 42px; height: auto;">
-							<div class="sl-block-content" style="z-index: 11;" dir="ui">
-								<h2>More collection methods</h2>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 280px; left: 0; top: 140px;">
-							<div class="sl-block-style" style="z-index: 12;">
-								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 12; font-size: 150%;">
-                                <pre class="kotlin"><code>for ((item, offer) in offers) {
-    // ...
-}
-
-
-for ((item, price) in prices) {
-    val quantity = quantities[item] ?: 0
-    res += quantity * price
-}</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 1280px; height: 300px; left: 0; top: 420px;">
-							<div class="sl-block-style" style="z-index: 10;">
-								<div class="sl-block-content notranslate" data-highlight-theme="darcula" style="z-index: 10; font-size: 150%;">
-                                <pre class="kotlin"><code>
-offers.forEach { (item, offer) -&gt;
-    // ...
-}
-
-
-res += quantities.entries.sumBy {
-    (item, quantity) -&gt; quantity * (prices[item]?:0)
-}
-</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="width: 1280px; height: 280px; left: 0; top: 140px;">
-							<div class="sl-block-style" style="z-index: 13; mix-blend-mode:exclusion; opacity: 0.53;">
-								<div class="sl-block-content" style="background:rgb(68, 68, 68); z-index: 13;">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 517px; left: 747px; top: 599px;">
-							<div class="sl-block-content fragment" style="z-index: 14; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="1">
-								<p>you can just
-									<span style="font-family:monospace">
-										<span style="color:orange"> sumBy {</span> lambda
-										<span style="color:orange">}</span>
-									</span>
-								</p>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 768px; left: 496px; top: 480px;">
-							<div class="sl-block-content fragment" style="z-index: 16; background: rgba(68, 68, 68, 0.5); padding: 20px; font-size:0.96em;" data-fragment-index="0">
-								<p><span style="font-family:monospace;color:orange">inline</span> functions embed lambda body in bytecode ⏩</p>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="code" style="width: 768px; height: 44px; left: 496px; top: 436px;">
-							<div class="sl-block-style" style="z-index: 17;">
-								<div class="sl-block-content notranslate fragment" data-highlight-theme="darcula" style="z-index: 17; font-size: 150%; border: 1px solid;" data-fragment-index="0">
-										<pre class="kotlin"><code>inline fun &lt;T&gt; Iterable&lt;T&gt;.forEach(action: (T) -&gt; Unit)</code></pre>
-								</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 471px; height: 101px; left: 0; top: 443px;">
-							<div class="sl-block-style" style="z-index: 18; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 18;" data-fragment-index="0">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 720px; height: 104px; left: 0; top: 587px;">
-							<div class="sl-block-style" style="z-index: 19; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 19;" data-fragment-index="1">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 36px; left: 0; top: 140px;">
-							<div class="sl-block-style" style="z-index: 22; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment current-visible" style="background:rgb(152, 0, 0); z-index: 22;" data-fragment-index="0">&nbsp;</div>
-							</div>
-						</div>
-						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 1280px; height: 140px; left: 0; top: 280px;">
-							<div class="sl-block-style" style="z-index: 23; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment current-visible" style="background:rgb(152, 0, 0); z-index: 23;" data-fragment-index="1">&nbsp;</div>
 							</div>
 						</div>
 					</section>
@@ -2408,12 +2370,12 @@ fun forFruits(vararg fruits: String) = fruits.asList()</code></pre>
 						</div>
 						<div class="sl-block" data-block-type="text" style="height: auto; width: 372px; left: 880px; top: 497px;">
 							<div class="sl-block-content fragment" style="z-index: 13; background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" data-fragment-index="3">
-								<p>long method 😥</p>
+								<p>primitive obsession 🤪</p>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="text" style="height: auto; width: 372px; left: 880px; top: 609px;">
 							<div class="sl-block-content fragment" style="z-index: 17; background: rgba(68, 68, 68, 0.5); padding: 20px; text-align: center;" dir="ui" data-fragment-index="4">
-								<p>primitive obsession 🤪</p>
+								<p>long method 😥</p>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 220px; height: 39px; left: 143px; top: 226px;">
@@ -2433,43 +2395,43 @@ fun forFruits(vararg fruits: String) = fruits.asList()</code></pre>
 						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 61px; height: 36px; left: 302px; top: 115px;">
 							<div class="sl-block-style" style="z-index: 22; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 22;" data-fragment-index="4">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 22;" data-fragment-index="3">&nbsp;</div>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 81px; height: 36px; left: 370px; top: 115px;">
 							<div class="sl-block-style" style="z-index: 23; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 23;" data-fragment-index="4">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 23;" data-fragment-index="3">&nbsp;</div>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 50px; height: 36px; left: 581px; top: 115px;">
 							<div class="sl-block-style" style="z-index: 24; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 24;" data-fragment-index="4">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 24;" data-fragment-index="3">&nbsp;</div>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 80px; height: 36px; left: 640px; top: 115px;">
 							<div class="sl-block-style" style="z-index: 25; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 25;" data-fragment-index="4">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 25;" data-fragment-index="3">&nbsp;</div>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 59px; height: 36px; left: 734px; top: 116px;">
 							<div class="sl-block-style" style="z-index: 26; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 26;" data-fragment-index="4">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 26;" data-fragment-index="3">&nbsp;</div>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 48px; height: 36px; left: 800px; top: 115px;">
 							<div class="sl-block-style" style="z-index: 27; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 27;" data-fragment-index="4">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 27;" data-fragment-index="3">&nbsp;</div>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="shape" style="min-width: 4px; min-height: 4px; width: 48px; height: 36px; left: 862px; top: 116px;">
 							<div class="sl-block-style" style="z-index: 28; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 28;" data-fragment-index="4">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 28;" data-fragment-index="3">&nbsp;</div>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="text" style="height: auto; min-width: 30px; min-height: 30px; width: 1261px; left: 0; top: 0;">
 							<div class="sl-block-style" style="z-index: 51;">
-								<div class="sl-block-content fragment current-visible" style="z-index: 13; text-align: left; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);"
-										 data-fragment-index="3" dir="ui">
+								<div class="sl-block-content fragment" style="z-index: 13; text-align: left; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);"
+										 data-fragment-index="4" dir="ui">
 									<blockquote>
 										<p><span class="fontstyle0">The first rule of functions is that they should be small. </span></p>
 										<p>
@@ -2483,14 +2445,14 @@ fun forFruits(vararg fruits: String) = fruits.asList()</code></pre>
 						</div>
 						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 1279px; height: 123px; ">
 							<div class="sl-block-style" style="z-index: 50;">
-								<div class="sl-block-content fragment current-visible" style="z-index: 10;" data-maintain-ar="false"  data-fragment-index="3" >
+								<div class="sl-block-content fragment" style="z-index: 10;" data-maintain-ar="false"  data-fragment-index="4" >
 									<img data-lazy-loaded="" data-src="img/parchment.png"/>
 								</div>
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="line" style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 38px; top: 144px;">
 							<div class="sl-block-style" style="z-index: 29; opacity: 0.52;">
-								<div class="sl-block-content fragment current-visible" data-line-x1="-519" data-line-y1="451" data-line-x2="-519" data-line-y2="-116" data-line-color="#00ff00" data-line-start-type="arrow" data-line-end-type="arrow" style="z-index: 29;" data-line-width="8px" data-fragment-index="3">
+								<div class="sl-block-content fragment" data-line-x1="-519" data-line-y1="451" data-line-x2="-519" data-line-y2="-116" data-line-color="#00ff00" data-line-start-type="arrow" data-line-end-type="arrow" style="z-index: 29;" data-line-width="8px" data-fragment-index="4">
 									<svg
 											xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="xMidYMid" width="1" height="567" viewBox="-519 -116 1 567">
 										<line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-519" y1="439" x2="-519" y2="-104"></line>
@@ -2952,7 +2914,7 @@ object NoOffer: SpecialPrice() {
 								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 19;" data-fragment-index="0">&nbsp;</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="text" style="height: auto; width: 178px; left: 1092px; top: 180px;">
+						<div class="sl-block" data-block-type="text" style="height: auto; width: 178px; left: 892px; top: 180px;">
 							<div class="sl-block-content fragment" style="z-index: 20; background: rgba(68, 68, 68, 0.5); padding: 20px;" data-fragment-index="0">
 								<p>Offer API</p>
 							</div>
@@ -3115,7 +3077,7 @@ private fun pay(quantities: MutableMap&lt;String, Int&gt;, offers: Map&lt;String
 						</div>
 						<div class="sl-block" data-block-type="shape" style="width: 1280px; height: 41px; left: 0; top: 332px;">
 							<div class="sl-block-style" style="z-index: 18; opacity:0.51;mix-blend-mode:lighten;">
-								<div class="sl-block-content fragment" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 18;" data-fragment-index="14">&nbsp;</div>
+								<div class="sl-block-content fragment current-visible" style="background:rgb(39, 78, 19); border:1px solid #00ff00; z-index: 18;" data-fragment-index="14">&nbsp;</div>
 							</div>
 						</div>
 
@@ -3129,7 +3091,7 @@ private fun pay(quantities: MutableMap&lt;String, Int&gt;, offers: Map&lt;String
 							</div>
 						</div>
 						<div class="sl-block" data-block-type="text" style="height: auto;width: 304px;right: 45px;top: 200px;font-size: 3em;">
-							<div class="sl-block-content fragment current-visible" style="z-index: 13; background: transparent; padding: 20px;" data-fragment-index="20">
+							<div class="sl-block-content fragment" style="z-index: 13; background: transparent; padding: 20px;" data-fragment-index="20">
 								<p>🤩😎</p>
 							</div>
 						</div>
@@ -3317,23 +3279,18 @@ object NoOffer : SpecialPrice() {
 
 
 
-
-
-
-
-
-
-
-
-
-
    /* this space intentionally left blank */</code></pre>
 								</div>
 							</div>
 						</div>
-						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 471px; height: 553px; left: 5px; top: 135px;">
+						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 471px; left: 5px; bottom: 10px;">
 							<div class="sl-block-content fragment" style="z-index: 17;" data-fragment-index="4">
-								<img data-natural-width="195" data-natural-height="229" data-lazy-loaded="" data-src="img/giphy-ah.gif"/>
+								<img data-lazy-loaded="" data-src="img/giphy-ah.gif"/>
+							</div>
+						</div>
+						<div class="sl-block" data-block-type="image" style="min-width: 4px; min-height: 4px; width: 471px; height: 320px; left: 5px; top: 110px;">
+							<div class="sl-block-content fragment" style="z-index: 17;" data-fragment-index="4">
+								<img data-natural-width="735" data-natural-height="500" data-lazy-loaded="" data-src="img/kotlin-everywhere.jpg"/>
 							</div>
 						</div>
 					</section>
