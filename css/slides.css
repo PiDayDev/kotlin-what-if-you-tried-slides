@@ -74,3 +74,10 @@ a.attrib span {
     display: inline-block;
     height: 80px;
 }
+.reveal .price-table td.item {
+    text-align: center;
+}
+.reveal .price-table td.price {
+    text-align: right;
+    font-family: monospace, serif;
+}
